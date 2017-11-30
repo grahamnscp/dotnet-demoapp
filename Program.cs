@@ -21,7 +21,7 @@ namespace DotnetDemoApp
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
                 .UseApplicationInsights()
-                .UseUrls("http://*:5000")
+                .UseUrls("http://*:80")
                 .Build();
     }
 }
