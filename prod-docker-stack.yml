@@ -1,0 +1,19 @@
+version: "3.3"
+
+services:
+  test-dotnet:
+    image: dtr.joeg.dtcntr.net/docker-demo/dotnet-web-prod:1
+    deploy:
+      mode: replicated
+      replicas: 3
+      labels:
+        - "com.docker.ucp.mesh.http.30013=internal_port=80,external_route=http://prod.dotnet.joeg.dtcntr.net"
+    networks:
+      - dotnet-prod
+      - ucp-hrm
+
+networks:
+  dotnet-prod:
+    driver: overlay
+  ucp-hrm:
+    external: true

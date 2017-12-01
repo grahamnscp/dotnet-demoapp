@@ -1,0 +1,19 @@
+version: "3.3"
+
+services:
+  test-dotnet:
+    image: dtr.joeg.dtcntr.net/docker-demo/dotnet-web-test:1
+    deploy:
+      mode: replicated
+      replicas: 1
+      labels:
+        - "com.docker.ucp.mesh.http.80=internal_port=80,external_route=http://test.dotnet.joeg.dtcntr.net"
+    networks:
+      - dotnet-test
+      - ucp-hrm
+
+networks:
+  dotnet-test:
+    driver: overlay
+  ucp-hrm:
+    external: true
